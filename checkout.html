@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Checkout | HELP BICICLETAS</title>
+
+  <meta name="theme-color" content="#111111">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="checkout-page">
+
+  <header>
+    <div class="container header-content">
+      <a href="index.html" class="logo">
+        <span class="logo-symbol">H</span>
+        <span>HELP <span>BICICLETAS</span></span>
+      </a>
+
+      <a href="index.html#carrinho" class="header-cart">
+        VOLTAR AO CARRINHO
+      </a>
+    </div>
+  </header>
+
+  <main class="checkout-main">
+    <div class="container">
+
+      <div class="checkout-heading">
+        <small>QUASE LÁ!</small>
+        <h1>FINALIZAR PEDIDO</h1>
+        <p>Confira seus produtos e informe os dados para continuar.</p>
+      </div>
+
+      <div class="checkout-layout">
+
+        <section class="checkout-form-section">
+          <h2>DADOS DO CLIENTE</h2>
+
+          <form id="form-checkout">
+
+            <label for="nome-cliente">Nome completo</label>
+            <input
+              type="text"
+              id="nome-cliente"
+              name="nome"
+              placeholder="Digite seu nome completo"
+              autocomplete="name"
+              required
+            >
+
+            <label for="telefone-cliente">Telefone / WhatsApp</label>
+            <input
+              type="tel"
+              id="telefone-cliente"
+              name="telefone"
+              placeholder="(31) 99999-9999"
+              autocomplete="tel"
+              required
+            >
+
+            <h2 class="checkout-subtitle">ENTREGA OU RETIRADA</h2>
+
+            <label for="tipo-entrega">Como deseja receber?</label>
+            <select id="tipo-entrega" name="entrega" required>
+              <option value="">Selecione uma opção</option>
+              <option value="entrega">Receber no endereço</option>
+              <option value="retirada">Retirar na loja</option>
+            </select>
+
+            <div id="campos-endereco">
+              <label for="cep-cliente">CEP</label>
+              <input
+                type="text"
+                id="cep-cliente"
+                name="cep"
+                placeholder="00000-000"
+                autocomplete="postal-code"
+              >
+
+              <label for="endereco-cliente">Endereço</label>
+              <input
+                type="text"
+                id="endereco-cliente"
+                name="endereco"
+                placeholder="Rua, avenida..."
+                autocomplete="street-address"
+              >
+
+              <label for="numero-cliente">Número</label>
+              <input
+                type="text"
+                id="numero-cliente"
+                name="numero"
+                placeholder="Número da residência"
+              >
+
+              <label for="complemento-cliente">Complemento (opcional)</label>
+              <input
+                type="text"
+                id="complemento-cliente"
+                name="complemento"
+                placeholder="Apartamento, casa, referência..."
+              >
+
+              <label for="cidade-cliente">Cidade</label>
+              <input
+                type="text"
+                id="cidade-cliente"
+                name="cidade"
+                placeholder="Sua cidade"
+                autocomplete="address-level2"
+              >
+            </div>
+
+            <button type="submit" class="btn-primary">
+              CONTINUAR COM O PEDIDO
+            </button>
+
+          </form>
+        </section>
+
+        <aside class="checkout-summary">
+          <h2>RESUMO DO PEDIDO</h2>
+
+          <div id="checkout-itens">
+            <p>Carregando produtos...</p>
+          </div>
+
+          <div class="checkout-total">
+            <span>Total do pedido:</span>
+            <strong id="checkout-total">R$ 0,00</strong>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>
+        © 2026 <strong>HELP BICICLETAS</strong>.
+        STREET. RIDE. FREEDOM.
+      </p>
+    </div>
+  </footer>
+
+  <script src="produtos.js"></script>
+  <script src="carrinho.js"></script>
+  <script src="checkout.js"></script>
+
+</body>
+</html>
