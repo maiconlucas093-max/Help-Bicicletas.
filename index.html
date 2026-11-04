@@ -417,7 +417,72 @@
         height: 220px;
       }
     }
+/* CARRINHO */
 
+.cart-section {
+  background: #151515;
+  min-height: 400px;
+}
+
+.cart-container {
+  background: #1b1b1b;
+  border: 1px solid #303030;
+  border-radius: 6px;
+  padding: 25px;
+}
+
+.cart-empty {
+  color: #aaa;
+  text-align: center;
+  padding: 35px 15px;
+}
+
+.cart-empty p {
+  margin-bottom: 20px;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cart-summary {
+  border-top: 1px solid #383838;
+  margin-top: 25px;
+  padding-top: 20px;
+  text-align: right;
+}
+
+.cart-summary p {
+  color: #ccc;
+  margin-bottom: 8px;
+}
+
+.cart-summary strong {
+  color: var(--red);
+  font-size: 24px;
+}
+
+.cart-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.cart-actions a,
+.cart-actions button {
+  display: inline-block;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 4px;
+  background: var(--red);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
 
     /* SOBRE */
 
@@ -770,7 +835,46 @@
       </div>
     </section>
 
-
+    <!-- CARRINHO DE COMPRAS -->
+    
+    <section class="cart-section" id="carrinho">
+      <div class="container">
+        
+        <div class="section-heading">
+          <small>SUA ESCOLHA</small>
+          <h2>MEU CARRINHO</h2>
+          <p>
+            Confira os produtos selecionados para sua próxima aventura.
+          </p>
+        </div>
+        
+        <div class="cart-container">
+          
+          <div id="lista-carrinho" class="cart-items">
+            <div class="cart-empty">
+              <p>Seu carrinho está vazio.</p>
+              <a href="#produtos" class="button">
+                CONTINUAR COMPRANDO
+              </a>
+            </div>
+          </div>
+          
+          <div class="cart-summary">
+            <p>Subtotal: <span id="subtotal-carrinho">R$ 0,00</span></p>
+            <p>Total: <strong id="total-carrinho">R$ 0,00</strong></p>
+          </div>
+          
+          <div class="cart-actions">
+            <a href="#produtos">CONTINUAR COMPRANDO</a>
+            <button type="button" id="botao-finalizar">
+              FINALIZAR COMPRA
+            </button>
+          </div>
+          
+        </div>
+        
+      </div>
+    </section>
     <section id="sobre">
       <div class="container about-grid">
 
