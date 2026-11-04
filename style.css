@@ -641,6 +641,7 @@ img {
         min-height: 230px;
       }
       
+
 /* ITENS DO CARRINHO */
 
 .cart-item {
@@ -694,12 +695,139 @@ img {
   color: white;
   font-size: 18px;
   border-radius: 4px;
+  cursor: pointer;
+}
+
+.cart-item-controls button:hover {
+  background: var(--red);
+  border-color: var(--red);
 }
 
 .cart-item-actions {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.cart-item-actions strong {
+  color: white;
+  font-size: 14px;
+}
+
+.cart-remove {
+  background: transparent;
+  border: 1px solid var(--red);
+  color: var(--red);
+  padding: 6px 9px;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cart-remove:hover {
+  background: var(--red);
+  color: white;
+}
+
+/* BOTÕES DOS PRODUTOS */
+
+.product-button {
+  display: block;
+  width: 100%;
+  background: var(--red);
+  color: white;
+  border: 0;
+  padding: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.product-button:hover {
+  background: var(--red-dark);
+}
+
+/* BOTÃO FINALIZAR COMPRA */
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  background: var(--red);
+  color: white;
+  border: 0;
+  padding: 14px 18px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: var(--red-dark);
+}
+
+/* BOTÕES GERAIS E DO CABEÇALHO */
+
+.button,
+.header-button {
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.button:hover,
+.header-button:hover {
+  background: var(--red-dark);
+}
+
+.header-cart {
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+/* DESTAQUE DE FOCO */
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+/* RESPONSIVIDADE DOS ITENS DO CARRINHO */
+
+@media (max-width: 480px) {
+  .cart-container {
+    padding: 12px;
+  }
+
+  .cart-item {
+    gap: 9px;
+  }
+
+  .cart-item-image {
+    width: 65px !important;
+    height: 65px !important;
+    min-width: 65px;
+    max-width: 65px;
+  }
+
+  .cart-item-info h3 {
+    font-size: 12px;
+  }
+
+  .cart-item-info p {
+    font-size: 11px;
+  }
+
+  .cart-item-actions strong {
+    font-size: 12px;
+  }
+}
+
   gap: 10px;
   flex-shrink: 0;
 }
