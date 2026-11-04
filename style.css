@@ -455,7 +455,45 @@ img {
   color: #ccc;
   margin-bottom: 8px;
 }
+/* ALINHAMENTO DO RESUMO DO PEDIDO */
 
+.cart-summary h3 {
+  color: var(--white);
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  color: #ccc;
+  padding: 10px 0;
+  border-bottom: 1px solid #303030;
+  text-align: left;
+}
+
+.summary-row span:last-child {
+  font-weight: bold;
+  color: var(--white);
+}
+
+.summary-row.total {
+  margin-top: 8px;
+  padding: 15px 0;
+  border-bottom: 0;
+  font-size: 18px;
+}
+
+.summary-row.total span:last-child {
+  color: var(--red);
+  font-size: 24px;
+}
+
+#finalizar-compra {
+  margin-top: 18px;
+}
 .cart-summary strong {
   color: var(--red);
   font-size: 24px;
