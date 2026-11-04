@@ -640,7 +640,7 @@ img {
       .about-visual {
         min-height: 230px;
       }
-      
+    }
 
 /* ITENS DO CARRINHO */
 
@@ -827,5 +827,3 @@ a:focus-visible {
     font-size: 12px;
   }
 }
-
-  
