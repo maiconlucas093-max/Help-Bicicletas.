@@ -1,7 +1,6 @@
-
 // ========================================
 // HELP BICICLETAS
-// Sistema inicial do carrinho
+// Carrinho compatível com IDs UUID do Supabase
 // ========================================
 
 const CHAVE_CARRINHO = "help_bicicletas_carrinho";
@@ -27,21 +26,26 @@ function salvarCarrinho() {
   );
 }
 
+// Compara IDs numéricos antigos e UUIDs
+function compararIds(idA, idB) {
+  return String(idA) === String(idB);
+}
+
 // Adiciona um produto
 function adicionarAoCarrinho(idProduto) {
   const produto = produtos.find(
-    item => item.id === Number(idProduto)
+    item => compararIds(item.id, idProduto)
   );
-
+  
   if (!produto) {
     console.error("Produto não encontrado.");
     return false;
   }
-
+  
   const itemExistente = carrinho.find(
-    item => item.id === produto.id
+    item => compararIds(item.id, produto.id)
   );
-
+  
   if (itemExistente) {
     itemExistente.quantidade++;
   } else {
@@ -53,7 +57,7 @@ function adicionarAoCarrinho(idProduto) {
       quantidade: 1
     });
   }
-
+  
   salvarCarrinho();
   return true;
 }
@@ -61,27 +65,27 @@ function adicionarAoCarrinho(idProduto) {
 // Remove um produto do carrinho
 function removerDoCarrinho(idProduto) {
   carrinho = carrinho.filter(
-    item => item.id !== Number(idProduto)
+    item => !compararIds(item.id, idProduto)
   );
-
+  
   salvarCarrinho();
 }
 
 // Altera a quantidade de um produto
 function alterarQuantidade(idProduto, quantidade) {
   const item = carrinho.find(
-    produto => produto.id === Number(idProduto)
+    produto => compararIds(produto.id, idProduto)
   );
-
+  
   if (!item) return;
-
+  
   const novaQuantidade = Number(quantidade);
-
+  
   if (!Number.isInteger(novaQuantidade) || novaQuantidade <= 0) {
     removerDoCarrinho(idProduto);
     return;
   }
-
+  
   item.quantidade = novaQuantidade;
   salvarCarrinho();
 }
