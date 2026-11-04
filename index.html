@@ -287,6 +287,98 @@
       font-size: 12px;
       margin-top: 5px;
     }
+    
+    /* PRODUTOS */
+
+    .products {
+      background: #101010;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .product-card {
+      background: #1b1b1b;
+      border: 1px solid #303030;
+      border-radius: 6px;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--red);
+    }
+
+    .product-image {
+      height: 190px;
+      background: linear-gradient(145deg, #292929, #151515);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-image span {
+      font-size: 75px;
+    }
+
+    .product-info {
+      padding: 20px;
+    }
+
+    .product-info small {
+      color: var(--red);
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .product-info h3 {
+      font-size: 17px;
+      margin: 8px 0;
+    }
+
+    .product-price {
+      color: white;
+      font-size: 21px;
+      font-weight: 900;
+      margin: 15px 0;
+    }
+
+    .product-button {
+      display: block;
+      background: var(--red);
+      text-align: center;
+      padding: 12px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 900;
+      transition: 0.3s;
+    }
+
+    .product-button:hover {
+      background: var(--red-dark);
+    }
+
+    @media (max-width: 800px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-image {
+        height: 220px;
+      }
+    }
+
 
     /* SOBRE */
 
@@ -556,6 +648,83 @@
 
       </div>
     </section>
+    
+    <!-- PRODUTOS EM DESTAQUE -->
+
+    <section class="products" id="produtos">
+      <div class="container">
+
+        <div class="section-heading">
+          <small>ESCOLHA SEU EQUIPAMENTO</small>
+          <h2>PRODUTOS EM DESTAQUE</h2>
+          <p>
+            Confira alguns equipamentos selecionados
+            para acompanhar você em cada pedal.
+          </p>
+        </div>
+
+        <div class="product-grid">
+
+          <article class="product-card">
+            <div class="product-image">
+              <span>🚲</span>
+            </div>
+            <div class="product-info">
+              <small>BICICLETAS</small>
+              <h3>Bicicleta MTB Aro 29</h3>
+              <p class="product-price">R$ 1.499,90</p>
+              <a href="#contato" class="product-button">
+                TENHO INTERESSE
+              </a>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image">
+              <span>🪖</span>
+            </div>
+            <div class="product-info">
+              <small>PROTEÇÃO</small>
+              <h3>Capacete Esportivo</h3>
+              <p class="product-price">R$ 189,90</p>
+              <a href="#contato" class="product-button">
+                TENHO INTERESSE
+              </a>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image">
+              <span>⚙️</span>
+            </div>
+            <div class="product-info">
+              <small>PEÇAS</small>
+              <h3>Kit de Transmissão</h3>
+              <p class="product-price">R$ 249,90</p>
+              <a href="#contato" class="product-button">
+                TENHO INTERESSE
+              </a>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image">
+              <span>🔧</span>
+            </div>
+            <div class="product-info">
+              <small>ACESSÓRIOS</small>
+              <h3>Kit de Ferramentas</h3>
+              <p class="product-price">R$ 89,90</p>
+              <a href="#contato" class="product-button">
+                TENHO INTERESSE
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
 
     <section id="sobre">
       <div class="container about-grid">
