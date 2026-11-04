@@ -1,40 +1,57 @@
 
 // ========================================
 // HELP BICICLETAS
-// Catálogo inicial de produtos
+// Catálogo de produtos integrado ao Supabase
 // ========================================
 
-const produtos = [
-  {
-    id: 1,
-    nome: "Bicicleta MTB Aro 29",
-    categoria: "Bicicletas",
-    preco: 149990,
-    imagem: "images/produto-mtb.jpg",
-    descricao: "Bicicleta MTB Aro 29."
-  },
-  {
-    id: 2,
-    nome: "Capacete Esportivo",
-    categoria: "Proteção",
-    preco: 18990,
-    imagem: "images/produto-capacete.jpg",
-    descricao: "Capacete esportivo para ciclismo."
-  },
-  {
-    id: 3,
-    nome: "Kit de Transmissão",
-    categoria: "Peças",
-    preco: 24990,
-    imagem: "images/produto-transmissao.jpg",
-    descricao: "Kit de transmissão para bicicleta."
-  },
-  {
-    id: 4,
-    nome: "Kit de Ferramentas",
-    categoria: "Acessórios",
-    preco: 8990,
-    imagem: "images/produto-ferramentas.jpg",
-    descricao: "Kit de ferramentas para bicicleta."
+let produtos = [];
+
+// Busca os produtos ativos no banco de dados
+async function carregarProdutos() {
+  try {
+    if (!window.helpSupabase) {
+      throw new Error(
+        "Conexão com o Supabase não encontrada."
+      );
+    }
+
+    const { data, error } = await window.helpSupabase
+      .from("produtos")
+      .select(
+        "id, nome, descricao, categoria, preco_centavos, imagem_url, estoque"
+      )
+      .eq("ativo", true)
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      throw error;
+    }
+
+    produtos = (data || []).map(produto => ({
+      id: produto.id,
+      nome: produto.nome,
+      descricao: produto.descricao || "",
+      categoria: produto.categoria || "geral",
+      preco: produto.preco_centavos,
+      imagem: produto.imagem_url || "",
+      estoque: produto.estoque
+    }));
+
+    console.info(
+      "HELP BICICLETAS: produtos carregados:",
+      produtos.length
+    );
+
+    return produtos;
+
+  } catch (erro) {
+    console.error(
+      "Erro ao carregar produtos do Supabase:",
+      erro
+    );
+
+    produtos = [];
+
+    return produtos;
   }
-];
+}
