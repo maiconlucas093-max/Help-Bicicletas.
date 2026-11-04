@@ -318,16 +318,22 @@
       border-color: var(--red);
     }
 
-    .product-image {
+       .product-image {
       height: 190px;
       background: linear-gradient(145deg, #292929, #151515);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      overflow: hidden;
     }
-
-    .product-image span {
-      font-size: 75px;
+    
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    
+    .product-card:hover .product-image img {
+      transform: scale(1.06);
     }
 
     .product-info {
