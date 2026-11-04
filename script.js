@@ -181,9 +181,26 @@ function prepararControlesCarrinho() {
 }
 
 // Inicializa as funções da loja
+function prepararBotaoFinalizarCompra() {
+  const botao = document.getElementById("finalizar-compra");
+  
+  if (!botao) return;
+  
+  botao.addEventListener("click", function() {
+    if (obterCarrinho().length === 0) {
+      alert("Seu carrinho está vazio. Adicione um produto antes de continuar.");
+      return;
+    }
+    
+    window.location.href = "checkout.html";
+  });
+}
+
+// Inicializa as funções da loja
 function iniciarLoja() {
   prepararBotoesProdutos();
   prepararControlesCarrinho();
+  prepararBotaoFinalizarCompra();
   renderizarCarrinho();
 }
 
