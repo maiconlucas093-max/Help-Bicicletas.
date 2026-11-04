@@ -864,4 +864,79 @@ a:focus-visible {
   .cart-item-actions strong {
     font-size: 12px;
   }
+}/* LOCALIZAÇÃO - HELP BICICLETAS */
+
+.location {
+  padding: 90px 20px;
+  background: #111111;
+  color: #ffffff;
+}
+
+.location-info {
+  text-align: center;
+  margin: 35px auto;
+  padding: 30px;
+  max-width: 650px;
+  background: #1c1c1c;
+  border: 1px solid #333333;
+  border-radius: 12px;
+}
+
+.location-info h3 {
+  color: #ed2027;
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+
+.location-info p {
+  color: #dddddd;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+.location-info .button {
+  display: inline-block;
+  background: #ed2027;
+  color: #ffffff;
+  padding: 14px 28px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.location-info .button:hover {
+  background: #c9151b;
+  transform: translateY(-2px);
+}
+
+.location-map {
+  max-width: 1000px;
+  margin: 35px auto 0;
+  overflow: hidden;
+  border: 2px solid #ed2027;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(237, 32, 39, 0.15);
+}
+
+.location-map iframe {
+  display: block;
+  width: 100%;
+  min-height: 350px;
+}
+
+/* LOCALIZAÇÃO EM CELULARES */
+
+@media (max-width: 600px) {
+  .location {
+    padding: 60px 15px;
+  }
+  
+  .location-info {
+    padding: 22px 15px;
+  }
+  
+  .location-map iframe {
+    min-height: 300px;
+  }
 }
