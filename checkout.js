@@ -1,10 +1,11 @@
 
 // ========================================
 // HELP BICICLETAS
-// Sistema de finalização do pedido
+// Finalização do pedido pelo WhatsApp
 // ========================================
 
-// Exibe os produtos e valores do carrinho
+const WHATSAPP_LOJA = "5531989683113";
+
 function renderizarResumoCheckout() {
   const listaItens = document.getElementById("checkout-itens");
   const totalElemento = document.getElementById("checkout-total");
@@ -14,10 +15,7 @@ function renderizarResumoCheckout() {
   const itens = obterCarrinho();
 
   if (itens.length === 0) {
-    listaItens.innerHTML = `
-      <p>Seu carrinho está vazio.</p>
-    `;
-
+    listaItens.innerHTML = "<p>Seu carrinho está vazio.</p>";
     totalElemento.textContent = formatarPreco(0);
     return;
   }
@@ -32,7 +30,6 @@ function renderizarResumoCheckout() {
           <br>
           Quantidade: ${item.quantidade}
         </div>
-
         <div class="checkout-item-price">
           ${formatarPreco(subtotal)}
         </div>
@@ -43,9 +40,8 @@ function renderizarResumoCheckout() {
   totalElemento.textContent = formatarPreco(calcularTotal());
 }
 
-// Protege textos exibidos na página
 function escaparTexto(texto) {
-  return String(texto).replace(/[&<>"']/g, caractere => {
+  return String(texto ?? "").replace(/[&<>"']/g, caractere => {
     const entidades = {
       "&": "&amp;",
       "<": "&lt;",
@@ -58,7 +54,6 @@ function escaparTexto(texto) {
   });
 }
 
-// Prepara o formulário
 function prepararCheckout() {
   const formulario = document.getElementById("checkout-form");
   const mensagem = document.getElementById("checkout-message");
@@ -75,38 +70,59 @@ function prepararCheckout() {
 
     if (itens.length === 0) {
       mensagem.style.display = "block";
-      mensagem.textContent = "Adicione produtos ao carrinho antes de continuar.";
+      mensagem.textContent = "Seu carrinho está vazio. Volte à loja e adicione produtos.";
       return;
     }
 
     if (!formulario.reportValidity()) return;
 
-    const dadosCliente = new FormData(formulario);
+    const dados = new FormData(formulario);
 
-    const pedido = {
-      cliente: {
-        nome: dadosCliente.get("nome"),
-        email: dadosCliente.get("email"),
-        telefone: dadosCliente.get("telefone"),
-        cep: dadosCliente.get("cep"),
-        rua: dadosCliente.get("rua"),
-        bairro: dadosCliente.get("bairro"),
-        cidade: dadosCliente.get("cidade")
-      },
-      pagamento: dadosCliente.get("pagamento"),
-      itens: obterCarrinho(),
-      total: calcularTotal()
-    };
+    const pagamento = {
+      pix: "Pix",
+      cartao: "Cartão de crédito",
+      combinar: "Combinar com a loja"
+    }[dados.get("pagamento")] || "A combinar";
 
-    console.log("Pedido preparado:", pedido);
+    const linhasProdutos = itens.map(item => {
+      const subtotal = item.preco * item.quantidade;
+
+      return `• ${item.nome} | Qtd: ${item.quantidade} | Unitário: ${formatarPreco(item.preco)} | Subtotal: ${formatarPreco(subtotal)}`;
+    });
+
+    const endereco = [
+      dados.get("rua"),
+      dados.get("bairro"),
+      dados.get("cidade"),
+      "CEP " + dados.get("cep")
+    ].filter(Boolean).join(", ");
+
+    const texto = [
+      "Olá! Gostaria de fazer este pedido na HELP BICICLETAS:",
+      "",
+      ...linhasProdutos,
+      "",
+      `TOTAL DOS PRODUTOS: ${formatarPreco(calcularTotal())}`,
+      "",
+      "DADOS DO CLIENTE",
+      `Nome: ${dados.get("nome")}`,
+      `E-mail: ${dados.get("email")}`,
+      `WhatsApp: ${dados.get("telefone")}`,
+      `Endereço: ${endereco}`,
+      `Forma de pagamento preferida: ${pagamento}`,
+      "",
+      "Por favor, confirme a disponibilidade, o frete e o valor final. Obrigado!"
+    ].join("\n");
+
+    const url = `https://wa.me/${WHATSAPP_LOJA}?text=${encodeURIComponent(texto)}`;
 
     mensagem.style.display = "block";
-    mensagem.textContent =
-      "Dados validados! O pedido ainda não foi enviado e nenhum pagamento foi realizado.";
+    mensagem.textContent = "Abrindo o WhatsApp para você revisar e enviar o pedido...";
+
+    window.location.href = url;
   });
 }
 
-// Inicialização
 document.addEventListener("DOMContentLoaded", function() {
   prepararCheckout();
 });
